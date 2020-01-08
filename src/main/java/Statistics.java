@@ -62,7 +62,7 @@ public class Statistics {
                 .filter(u -> u.getStudent().equals(nameStudent))
                 .collect(
                         Collectors.mapping(
-                                p -> new AcademicPerformance(p.getStudent(), p.getSubject(), p.getPoint(), p.getMaster()),
+                                p -> new AcademicPerformance(new Student(p.getIdStudent(),p.getStudent()), p.getSubject(), p.getPoint(), p.getMaster()),
                                 Collectors.toList()));
         return studentInfo;
     }

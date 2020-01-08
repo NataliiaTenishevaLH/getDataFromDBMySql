@@ -27,15 +27,15 @@ public class StatisticsTest {
 
         Statistics mock = mock(Statistics.class);
         List<AcademicPerformance> students = new ArrayList<>();
-        students.add(new AcademicPerformance("student1", 2019,"group1", "maths", 10, "FIO master maths"));
-        students.add(new AcademicPerformance("student1", 2019,"group1", "physics", 10, "FIO master physics"));
-        students.add(new AcademicPerformance("student1", 2019,"group1", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student4", 2019,"group1", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student2", 2018,"group2", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student3", 2018,"group2", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student4", 2019,"group1", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student5", 2018,"group3", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student6", 2019,"group4", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(1,"student1"), 2019,"group1", "maths", 10, "FIO master maths"));
+        students.add(new AcademicPerformance(new Student(1,"student1"), 2019,"group1", "physics", 10, "FIO master physics"));
+        students.add(new AcademicPerformance(new Student(1,"student1"), 2019,"group1", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(4,"student4"), 2019,"group1", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(2,"student2"), 2018,"group2", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(3,"student3"), 2018,"group2", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(4,"student4"), 2019,"group1", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(5,"student5"), 2018,"group3", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(6,"student6"), 2019,"group4", "computer science", 10, "FIO computer science"));
 
         Statistics statistics = new Statistics(students);
         //1 Проверяем, что метод getListStudents вернет всех студентов
@@ -60,10 +60,10 @@ public class StatisticsTest {
         assertThat(mock.getListYear(2019), containsInAnyOrder("student1", "student4", "student6"));
 
         //4. Все предметы студента с оценками и преподавателями
-         List<AcademicPerformance> listStudentInfo = new ArrayList<>();
-        listStudentInfo.add(new AcademicPerformance("student1","maths", 10, "FIO master math"));
-        listStudentInfo.add(new AcademicPerformance("student1", "physics", 10, "FIO master physics"));
-        listStudentInfo.add(new AcademicPerformance("student1", "computer science", 10, "FIO master computer science"));
+        List<AcademicPerformance> listStudentInfo = new ArrayList<>();
+        listStudentInfo.add(new AcademicPerformance(new Student(1,"student1"),"maths", 10, "FIO master math"));
+        listStudentInfo.add(new AcademicPerformance(new Student(1,"student1"), "physics", 10, "FIO master physics"));
+        listStudentInfo.add(new AcademicPerformance(new Student(1,"student1"), "computer science", 10, "FIO master computer science"));
         when(mock.getAllInfoAboutStudent("student1")).thenReturn(statistics.getAllInfoAboutStudent("student1"));
 
         //5. Средний бал студента
@@ -76,22 +76,22 @@ public class StatisticsTest {
     void repeatedTest(TestInfo testInfo) {
         Statistics mock = mock(Statistics.class);
         List<AcademicPerformance> students = new ArrayList<>();
-        students.add(new AcademicPerformance("student1", 2019,"group1", "maths", 10, "FIO master maths"));
-        students.add(new AcademicPerformance("student1", 2019,"group1", "physics", 10, "FIO master physics"));
-        students.add(new AcademicPerformance("student1", 2019,"group1", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student4", 2019,"group1", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student2", 2018,"group2", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student3", 2018,"group2", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student4", 2019,"group1", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student5", 2018,"group3", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student6", 2019,"group4", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(1,"student1"), 2019,"group1", "maths", 10, "FIO master maths"));
+        students.add(new AcademicPerformance(new Student(1,"student1"), 2019,"group1", "physics", 10, "FIO master physics"));
+        students.add(new AcademicPerformance(new Student(1,"student1"), 2019,"group1", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(4,"student4"), 2019,"group1", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(2,"student2"), 2018,"group2", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(3,"student3"), 2018,"group2", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(4,"student4"), 2019,"group1", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(5,"student5"), 2018,"group3", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(6,"student6"), 2019,"group4", "computer science", 10, "FIO computer science"));
 
         Statistics statistics = new Statistics(students);
 
         List<AcademicPerformance> listStudentInfo = new ArrayList<>();
-        listStudentInfo.add(new AcademicPerformance("student1","maths", 10, "FIO master math"));
-        listStudentInfo.add(new AcademicPerformance("student1", "physics", 10, "FIO master physics"));
-        listStudentInfo.add(new AcademicPerformance("student1", "computer science", 10, "FIO master computer science"));
+        listStudentInfo.add(new AcademicPerformance(new Student(1,"student1"),"maths", 10, "FIO master math"));
+        listStudentInfo.add(new AcademicPerformance(new Student(1,"student1"), "physics", 10, "FIO master physics"));
+        listStudentInfo.add(new AcademicPerformance(new Student(1,"student1"), "computer science", 10, "FIO master computer science"));
         when(mock.getAllInfoAboutStudent("student1")).thenReturn(statistics.getAllInfoAboutStudent("student1"));
     }
 
@@ -99,15 +99,15 @@ public class StatisticsTest {
     void testExpectedException() {
         Statistics mock = mock(Statistics.class);
         List<AcademicPerformance> students = new ArrayList<>();
-        students.add(new AcademicPerformance("student1", 2019,"group1", "maths", 10, "FIO master maths"));
-        students.add(new AcademicPerformance("student1", 2019,"group1", "physics", 10, "FIO master physics"));
-        students.add(new AcademicPerformance("student1", 2019,"group1", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student4", 2019,"group1", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student2", 2018,"group2", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student3", 2018,"group2", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student4", 2019,"group1", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student5", 2018,"group3", "computer science", 10, "FIO computer science"));
-        students.add(new AcademicPerformance("student6", 2019,"group4", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(1,"student1"), 2019,"group1", "maths", 10, "FIO master maths"));
+        students.add(new AcademicPerformance(new Student(1,"student1"), 2019,"group1", "physics", 10, "FIO master physics"));
+        students.add(new AcademicPerformance(new Student(1,"student1"), 2019,"group1", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(4,"student4"), 2019,"group1", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(2,"student2"), 2018,"group2", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(3,"student3"), 2018,"group2", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(4,"student4"), 2019,"group1", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(5,"student5"), 2018,"group3", "computer science", 10, "FIO computer science"));
+        students.add(new AcademicPerformance(new Student(6,"student6"), 2019,"group4", "computer science", 10, "FIO computer science"));
 
         Statistics statistics = new Statistics(students);
         //1 Проверяем, что метод getListStudents вернет всех студентов

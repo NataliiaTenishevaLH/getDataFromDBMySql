@@ -1,16 +1,13 @@
-import lombok.Data;
-
-@Data
 public class AcademicPerformance {
-    private String fioStudent;
+    private Student student;
     private int year;
     private String group;
     private String subject;
     private int point;
     private String fioMaster;
 
-    AcademicPerformance(String fioStudent, int year, String group, String subject, int point, String fioMaster) {
-        this.fioStudent = fioStudent;
+   public AcademicPerformance(Student student, int year, String group, String subject, int point, String fioMaster) {
+        this.student = student;
         this.year = year;
         this.group = group;
         this.subject = subject;
@@ -18,22 +15,35 @@ public class AcademicPerformance {
         this.fioMaster = fioMaster;
     }
 
-    AcademicPerformance(String fioStudent, String subject, int point, String fioMaster) {
-        this.fioStudent = fioStudent;
+   public AcademicPerformance(Student student, String subject, int point, String fioMaster) {
+        this.student = student;
         this.subject = subject;
         this.point = point;
         this.fioMaster = fioMaster;
     }
 
+    public AcademicPerformance(Student student, int year, String group) {
+        this.student = student;
+        this.year = year;
+        this.group = group;
+    }
+
+    public AcademicPerformance(Student student) {
+        this.student = student;
+    }
 
 
     @Override
     public String toString() {
-        return this.fioStudent;
+        return this.student.toString();
     }
 
     public String getStudent() {
-        return this.fioStudent;
+        return this.student.toString();
+    }
+
+    public int getIdStudent() {
+        return this.student.getId();
     }
 
     public int getPoint() {

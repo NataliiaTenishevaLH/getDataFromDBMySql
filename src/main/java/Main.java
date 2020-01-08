@@ -1,45 +1,30 @@
-import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 public class Main {
 
-    public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
-        List<AcademicPerformance> students = new ArrayList<>();
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbUniversity"
-                + "?useSSL=false&user=root&password=root&characterEncoding=UTF-8");
-        Statement statement = connection.createStatement();
+    public static void main(String[] args) {
+      List<AcademicPerformance> studentList = new ArrayList<>();
+      List<AcademicPerformance> students = new ArrayList<>();
 
-        String queryText = "SELECT st.ID, st.FIO, st.YEAR, gr.NAME, l.NAME, p.POINT, m.FIO  from students st  " +
-                "INNER JOIN student_groups gr ON st.ID_GROUP = gr.ID " +
-                "LEFT JOIN points p ON st.ID = p.ID_STUDENT " +
-                "INNER  JOIN lessons l ON p.ID_LESSON = l.ID " +
-                "LEFT JOIN master m ON l.ID_MASTER = m.ID";
+       try {
+           DataFromDB dataFromDB = new DataFromDB();
+           students = dataFromDB.getDataFromDB();
+       } catch(Exception e){
 
+       }
 
-        ResultSet resultSet = statement.executeQuery(queryText);
-
-        ResultSetMetaData rsmd = resultSet.getMetaData();
-        int columnsnumber = rsmd.getColumnCount();
-
-
-        while (resultSet.next()) {
-            students.add(new AcademicPerformance(
-                    resultSet.getString(2),
-                    resultSet.getInt(3),
-                    resultSet.getString(4),
-                    resultSet.getString(5),
-                    resultSet.getInt(6),
-                    resultSet.getString(7)
-            ));
-        }
-
-        Statistics statistics = new Statistics(students);
+       Statistics statistics = new Statistics(students);
 
         //1. Получить список всех студентов
         Set<String> sortedListStudents = statistics.getListStudents();
         System.out.println("List of students: ");
-        System.out.println(sortedListStudents.toString());
+        Iterator iterator = sortedListStudents.iterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next().toString());
+        }
 
         //2. Список студентов обучающихся в одной группе
         Set<String> groupList = statistics.getGroupList("group1");
